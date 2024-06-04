@@ -2,7 +2,7 @@
 #include "network.hpp"
 
 void Network::network_activate_peer_server(int argc, const char** argv) {
-    int sockfd, newsockfd,portno, ions;
+    int sockfd, newsockfd,portno; ssize_t ions;
     struct sockaddr_in server_address, client_address; char buffer[255];
     socklen_t aclient_len;
 

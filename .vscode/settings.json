@@ -1,0 +1,8 @@
+{
+    "files.associations": {
+        "istream": "cpp",
+        "bitset": "cpp",
+        "ios": "cpp",
+        "locale": "cpp"
+    }
+}

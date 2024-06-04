@@ -6,6 +6,10 @@
 #include <netdb.h>
 #include <string>
 #include <netinet/in.h>
+#include <pthread.h>
+
+static const pthread_mutex_t network_mutex = PTHREAD_MUTEX_INITIALIZER;
+static const pthread_cond_t network_condix = PTHREAD_COND_INITIALIZER;
 
 class Network {
 	private:

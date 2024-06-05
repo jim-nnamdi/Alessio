@@ -1,3 +1,5 @@
 .DS_Store
 build/
 .vscode
+block/a.out
+block/block.hpp.gch

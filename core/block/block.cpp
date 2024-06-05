@@ -1,15 +1,23 @@
 #include "block.hpp"
 
 template<typename A>
-Blockchain<A>& Blockchain<A>::operator=(const Blockchain& blockchain){
-    if(this != &blockchain)
-        chain = blockchain.chain;
-    return *this;
+void new_alessio(struct alessio<A>* agen, std::vector<A> aev){
+    if(agen == nullptr) a_error_msg("no blocks");
+    struct alessio<A>* asam = new struct alessio<A>();
+    asam->data = aev; asam->nassio = nullptr;
+    struct alessio<A>* csam = new struct alessio<A>();
+    csam->data = aev; csam->nassio = nullptr;
+    asam->next_block = csam;
 }
 
-template<typename A>
-std::vector<Block> Blockchain<A>::aalloc(const Block& alloc_block, A data){
-    std::vector<Block> newblock;
-    newblock.push_back(alloc_block);
-    return newblock;
+template<typename A> 
+void end_alessio(struct alessio<A>* agen, std::vector<A> aev){
+    struct alessio<A>* ptr; ptr = agen; 
+    std::unique_ptr<struct alessio<A> > temp = make_unique<struct alessio<A> >;
+    temp->data = aev; temp->nassio = nullptr;
+    while(ptr->nassio != nullptr)
+        ptr = ptr->nassio;
+    ptr->nassio = temp;
 }
+
+void a_error_msg(const char* msg) { perror(msg);}

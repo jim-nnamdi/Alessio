@@ -1,66 +1,28 @@
 
 #include <iostream>
-#include <functional>
-#include <unordered_map>
-#include <string>
-#include <chrono>
 #include <vector>
-#include <set>
+#include <memory>
+#include <chrono>
+#include <utility>
 
-struct BlockHeader{
-    std::string prev_hash;
-    time_t created_date;
-    bool operator=(const BlockHeader& header){
-        return prev_hash == header.prev_hash && 
-        created_date == header.created_date;
-    }
+struct extra{
+    const char* rev;
+    const char* aev;
+    time_t stamp;
 };
 
-namespace std {
-    template<>
-    struct hash<BlockHeader> {
-        size_t operator()(const BlockHeader& blockheader){
-            size_t bprev_hash = std::hash<std::string>()(blockheader.prev_hash);
-            size_t bcreated_at = std::hash<time_t>()(blockheader.created_date);
-            return bprev_hash ^ (bcreated_at << 1);
-        }
-    };
-}
-
-struct Block{
-    public:
-    std::string address;
-    BlockHeader header;
-    std::vector<std::string> transactions;
-    bool operator=(const Block& block) const {
-        return address == block.address && 
-        header.prev_hash == block.header.prev_hash 
-        && transactions == block.transactions;
-    }
-};
-
-namespace std {
-    template<>
-    struct hash<Block> {
-        size_t operator()(const Block& block) const {
-            size_t block_address = std::hash<std::string>()(block.address);
-            size_t block_prev_hash = std::hash<std::string>()(block.header.prev_hash);
-            size_t block_transacts = std::hash<size_t>()(block.transactions.size());
-            return block_address ^ (block_prev_hash << 1) ^ (block_transacts << 2);
-        }
-    };
+template<typename T, typename... X>
+std::unique_ptr<T> make_unique(X&&... x) {
+    return std::unique_ptr<T>(new T(std::forward<X>(x)...));
 }
 
 template<typename A>
-class Blockchain {
-    public: 
-    Blockchain();
-    ~Blockchain();
-    Blockchain(const Blockchain& blockchain);
-    Blockchain<A>& operator=(const Blockchain& blockchain);
-    std::vector<std::set<std::vector<Block> > > vault();
-    std::vector<Block> aalloc(const Block& alloc_block, A data);
-
-    private:  
-    std::vector<Block> chain;
+struct alessio{
+    std::vector<A> data;
+    struct Alessio* nassio;
 };
+void a_error_msg(const char* msg);
+template<typename A>
+void new_alessio(struct alessio<A>* agen, std::vector<A> aev);
+template<typename A>
+void end_alessio(struct alessio<A>* agen, std::vector<A> aev);

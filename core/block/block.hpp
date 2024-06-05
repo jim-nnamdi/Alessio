@@ -9,13 +9,9 @@
 #include <string>
 
 struct extra{
-    /* timestamp for creation */
     time_t stamp;
-    /* hash for previous block */
     const char* rev;    
-    /* hash for current block */
     const char* aev;
-    /* readable timestamp */
     std::string tstamp;
 };
 

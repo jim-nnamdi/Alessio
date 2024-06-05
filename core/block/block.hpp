@@ -1,14 +1,22 @@
 
 #include <iostream>
+#include <stdio.h>
 #include <vector>
 #include <memory>
 #include <chrono>
+#include <ctime>
 #include <utility>
+#include <string>
 
 struct extra{
-    const char* rev;
-    const char* aev;
+    /* timestamp for creation */
     time_t stamp;
+    /* hash for previous block */
+    const char* rev;    
+    /* hash for current block */
+    const char* aev;
+    /* readable timestamp */
+    std::string tstamp;
 };
 
 template<typename T, typename... X>

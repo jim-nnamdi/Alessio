@@ -31,3 +31,23 @@ struct alessio<A> arbitrary_pos(struct alessio<A>* agen, std::vector<A> aev, int
     frst->nassio = scnd;
 }
 void a_error_msg(const char* msg) { perror(msg);}
+
+int main() {
+    std::chrono::system_clock::time_point now = std::chrono::system_clock::now();
+    std::time_t now_time_t = std::chrono::system_clock::to_time_t(now);
+    std::string now_str = std::ctime(&now_time_t);
+    struct extra aextra;
+    aextra.aev = "previous hash"; aextra.rev="current hash"; aextra.stamp = now_time_t; aextra.tstamp = now_str;
+    struct alessio<struct extra>* zblock = new struct alessio<struct extra>;
+    zblock->data.push_back(aextra);
+    std::vector<struct extra> z = zblock->data;
+    typedef std::vector<struct extra>::const_iterator aiterator;
+    for(aiterator zb = z.begin(); zb != z.end(); zb++){
+        const char *revx = zb->rev; std::cout << revx << std::endl;
+        const char *aevx = zb->aev; std::cout << aevx << std::endl;
+        time_t creation_t = zb->stamp; std::cout << creation_t << std::endl;
+        std::string timed = zb->tstamp; std::cout << timed << std::endl;
+    }
+    delete zblock;
+    return 0;
+}

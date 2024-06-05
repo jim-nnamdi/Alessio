@@ -10,5 +10,6 @@ Blockchain<A>& Blockchain<A>::operator=(const Blockchain& blockchain){
 template<typename A>
 std::vector<Block> Blockchain<A>::aalloc(const Block& alloc_block, A data){
     std::vector<Block> newblock;
+    newblock.push_back(alloc_block);
     return newblock;
 }

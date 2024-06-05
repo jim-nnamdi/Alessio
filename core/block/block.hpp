@@ -5,6 +5,7 @@
 #include <string>
 #include <chrono>
 #include <vector>
+#include <set>
 
 struct BlockHeader{
     std::string prev_hash;
@@ -57,8 +58,8 @@ class Blockchain {
     ~Blockchain();
     Blockchain(const Blockchain& blockchain);
     Blockchain<A>& operator=(const Blockchain& blockchain);
+    std::vector<std::set<std::vector<Block> > > vault();
     std::vector<Block> aalloc(const Block& alloc_block, A data);
-    std::vector<Block> dealloc(const Block& dealloc_block);
 
     private:  
     std::vector<Block> chain;

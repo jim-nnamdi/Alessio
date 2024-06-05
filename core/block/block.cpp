@@ -20,4 +20,14 @@ void end_alessio(struct alessio<A>* agen, std::vector<A> aev){
     ptr->nassio = temp;
 }
 
+template<typename A>
+struct alessio<A> arbitrary_pos(struct alessio<A>* agen, std::vector<A> aev, int pos){
+    struct alessio<A>* frst; frst = agen; 
+    std::unique_ptr<struct alessio<A> >scnd = make_unique<struct alessio<A> >;
+    scnd->data = aev; scnd->nassio = nullptr; pos--;
+    while(pos != 1)
+        frst = frst->nassio; pos--;
+    scnd->nassio = frst->nassio;
+    frst->nassio = scnd;
+}
 void a_error_msg(const char* msg) { perror(msg);}

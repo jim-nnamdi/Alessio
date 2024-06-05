@@ -26,3 +26,5 @@ template<typename A>
 void new_alessio(struct alessio<A>* agen, std::vector<A> aev);
 template<typename A>
 void end_alessio(struct alessio<A>* agen, std::vector<A> aev);
+template<typename A>
+struct alessio<A> arbitrary_pos(struct alessio<A>* agen, std::vector<A> aev, int pos);

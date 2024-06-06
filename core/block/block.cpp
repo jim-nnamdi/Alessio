@@ -30,24 +30,29 @@ struct alessio<A> arbitrary_pos(struct alessio<A>* agen, std::vector<A> aev, int
     scnd->nassio = frst->nassio;
     frst->nassio = scnd;
 }
-void a_error_msg(const char* msg) { perror(msg);}
 
-int main() {
-    std::chrono::system_clock::time_point now = std::chrono::system_clock::now();
-    std::time_t now_time_t = std::chrono::system_clock::to_time_t(now);
-    std::string now_str = std::ctime(&now_time_t);
-    struct extra aextra;
-    aextra.aev = "previous hash"; aextra.rev="current hash"; aextra.stamp = now_time_t; aextra.tstamp = now_str;
-    struct alessio<struct extra>* zblock = new struct alessio<struct extra>;
-    zblock->data.push_back(aextra);
-    std::vector<struct extra> z = zblock->data;
-    typedef std::vector<struct extra>::const_iterator aiterator;
-    for(aiterator zb = z.begin(); zb != z.end(); zb++){
-        const char *revx = zb->rev; std::cout << revx << std::endl;
-        const char *aevx = zb->aev; std::cout << aevx << std::endl;
-        time_t creation_t = zb->stamp; std::cout << creation_t << std::endl;
-        std::string timed = zb->tstamp; std::cout << timed << std::endl;
-    }
-    delete zblock;
-    return 0;
+template<typename T>
+std::vector<struct alessio<T> > Alogic<T>::get_blocks(){
+    for(typename std::vector<struct alessio<T> >::const_iterator block = chain.begin(); block != chain.end(); ++block)
+        std::cout << *block << std::endl;
+    return chain;
 }
+
+template<typename T> 
+std::vector<struct alessio<T> > Alogic<T>::add_block(struct alessio<T>& newentry) {
+    for(typename std::vector<struct alessio<T> >::iterator vec = chain.begin(); vec != chain.end(); ++vec){
+        struct alessio<T>& vdata = *vec;
+        struct extra datax = vdata.data;
+        struct extra nentx = newentry.data;
+        std::chrono::system_clock::time_point now = std::chrono::system_clock::now();
+        std::time_t now_time_t = std::chrono::system_clock::to_time_t(now);
+        std::time_t block_diff = nentx.stamp - now_time_t;
+        if(datax.rev != nentx.rev && now_time_t > block_diff)
+            chain.push_back(newentry);
+        else break;
+    }
+    std::vector<struct alessio<T> > ablocks = get_blocks(); 
+    return ablocks;
+}
+
+void a_error_msg(const char* msg) { perror(msg);}

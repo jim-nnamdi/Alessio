@@ -8,6 +8,8 @@
 #include <utility>
 #include <string>
 #include <type_traits>
+#include <algorithm>
+#include <optional>
 
 struct extra{
     time_t stamp;
@@ -26,6 +28,7 @@ struct alessio{
     std::vector<A> data;
     struct Alessio* nassio;
 };
+
 void a_error_msg(const char* msg);
 template<typename A>
 void new_alessio(struct alessio<A>* agen, std::vector<A> aev);
@@ -53,7 +56,6 @@ class Alogic{
     Alogic operator=(const Alogic& alogic);
     std::vector<struct alessio<T> > get_blocks();
     std::vector<struct alessio<T> > add_block(struct alessio<T>& newentry);
-    ssize_t max_block_size();
     void display_chain_blocks();
     private:  
     std::vector<struct alessio<T> > chain;

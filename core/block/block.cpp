@@ -54,5 +54,10 @@ std::vector<struct alessio<T> > Alogic<T>::add_block(struct alessio<T>& newentry
     std::vector<struct alessio<T> > ablocks = get_blocks(); 
     return ablocks;
 }
+template<typename T>
+void Alogic<T>::display_chain_blocks(){
+    for(typename std::vector<struct alessio<T> >::const_iterator bk = chain.begin(); bk != chain.end();)
+        std::cout << *bk << std::endl;
+}
 
 void a_error_msg(const char* msg) { perror(msg);}
